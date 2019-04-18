@@ -75,4 +75,3 @@ transformations and then fixing them in the original file.
 **>Controls:
 Input** - file to analyze
 **Output** - directory or empty for input directory. In case of leaving empty name will be "input file + _out.svg"
-
