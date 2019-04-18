@@ -12,6 +12,8 @@ https://forum.freecadweb.org/viewtopic.php?f=34&t=
     - Addon can be found in T-panel – 1D tab – 1D SVG Tools.
 
 Addons instalation:
+![Set_Linear_Demo](https://raw.githubusercontent.com/formjune/1D_SVG_Tools/master/docs/1.png)
+
 
 ## - SVG TOOLS
 
@@ -39,6 +41,7 @@ Input** - SVG file to scan.
 be written into separated data block. Used for finding files near SVG (integrity check for archiving).
 
 SVG Parse Images result:
+![Set_Linear_Demo](https://raw.githubusercontent.com/formjune/1D_SVG_Tools/master/docs/2.png)
 
 SVG copy images - Copy all files from external links found by SVG parse images into one
 directory.
@@ -52,6 +55,7 @@ multiple SVG icon files.
 
 
 SVG Icon Slicer operation principle:
+![Set_Linear_Demo](https://raw.githubusercontent.com/formjune/1D_SVG_Tools/master/docs/3.png)
 
 Icon filenames are taken from link of image objects from right side to the icon block.
 Grids, Metadata and License data are copied from original SVG.
@@ -72,4 +76,3 @@ transformations and then fixing them in the original file.
 Input** - file to analyze
 **Output** - directory or empty for input directory. In case of leaving empty name will be "input file + _out.svg"
 
-![Set_Linear_Demo](https://github.com/BenjaminSauder/EdgeFlow/blob/master/docs/Set_Linear_Demo.jpg)
