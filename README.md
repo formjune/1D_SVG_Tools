@@ -1,4 +1,4 @@
--- COIL Icon Set description
+# - COIL Icon Set description
 
 COIL icon set is a result of research about redesign of FreeCAD icons in minimalist style.
 Main thread about COIL icon redesign https://forum.freecadweb.org/viewtopic.php?f=34&t=34687
