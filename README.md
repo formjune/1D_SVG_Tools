@@ -24,7 +24,7 @@ To slice modified base file into icon set need to install 1D_ SVG_Tools addon in
 
 To get proper names of icons, all "$" signs have to be removed from icon names, for example, with Double Commaner.
 
-- 1D_ SVG_Tools
+# - 1D_ SVG_Tools
 is an addon for Blender 2.79, a toolkit that provides tools for SVG files.
 It allow to split/merge given SVG files, find (parse)/copy images listed in it and slice specially prepared
 files to multiple icons.
