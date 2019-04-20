@@ -10,7 +10,7 @@ Archive contains FC_PNG folder with PNG images of all icons in different color v
 - 1D_FC_COIL_LB_BLUE.svg (Light theme B - 5 colors blue theme)
 - 1D_FC_COIL_DB_BLUE.svg (Dark theme B - 5 colors blue theme)
 
-and three folders with correspond sliced result with icon per file, ready to be used if FreeCAD IconThemes addon.
+and three folders with correspond sliced result with icon per file, ready to be used in FreeCAD IconThemes addon.
 
 - COIL_LA_v1.0
 - COIL_LB_v1.0
