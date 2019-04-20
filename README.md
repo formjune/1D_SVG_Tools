@@ -1,4 +1,4 @@
-# - COIL Icon Set description
+# COIL Icon Set description
 
 COIL icon set is a result of research about redesign of FreeCAD icons in minimalist style.
 Main thread about COIL icon redesign https://forum.freecadweb.org/viewtopic.php?f=34&t=34687
@@ -24,7 +24,7 @@ To slice modified base file into icon set need to install 1D_ SVG_Tools addon in
 
 To get proper names of icons, all "$" signs have to be removed from icon names, for example, with Double Commaner.
 
-# - 1D_ SVG_Tools
+# 1D_ SVG_Tools
 is an addon for Blender 2.79, a toolkit that provides tools for SVG files.
 It allow to split/merge given SVG files, find (parse)/copy images listed in it and slice specially prepared
 files to multiple icons.
@@ -40,7 +40,7 @@ Addons instalation:
 ![Set_Linear_Demo](https://raw.githubusercontent.com/formjune/1D_SVG_Tools/master/docs/1.png)
 
 
-## - SVG TOOLS
+## SVG TOOLS
 
 SVG input split - splits svg file into pieces not exceeding selected size.
 
