@@ -1,6 +1,6 @@
 # COIL Icon Set description
 
-COIL icon set is a result of research about redesign of FreeCAD icons in minimalist style.
+COIL icon set is a result of research about redesign of FreeCAD icons in minimalistic style.
 Main thread about COIL icon redesign https://forum.freecadweb.org/viewtopic.php?f=34&t=34687
 Icons are shared under CC-BY-SA 3.0 license,  license of code is GPL v2.
 
@@ -16,17 +16,17 @@ and three folders with correspond sliced result with icon per file, ready to be 
 - COIL_LB_v1.0
 - COIL_DB_v1.0
 
-Instructions about how to install and use sliced icon themes in FreeCAD can be found at addon's page:
+Instructions about how to install and use sliced icon themes in FreeCAD can be found on addon's page:
 https://github.com/triplus/IconThemes
 
-Base files can be edited in Inkscape https://inkscape.org/ , as it provides ability to select everything with same color and recolor selection.
-To slice modified base file into icon set need to install 1D_ SVG_Tools addon in Blender 2.79 following further instructions, and use SVG icon slicer tool from it.
+Base files can be edited in Inkscape https://inkscape.org/ , as it provides ability to select everything with the same color and recolor selection.
+To slice modified base file into icon set we need to install 1D_ SVG_Tools addon in Blender 2.79 following further instructions, and use SVG icon slicer tool from it.
 
 To get proper names of icons, all "$" signs have to be removed from icon names, for example, with Double Commaner.
 
 # 1D_ SVG_Tools
 is an addon for Blender 2.79, a toolkit that provides tools for SVG files.
-It allow to split/merge given SVG files, find (parse)/copy images listed in it and slice specially prepared
+It allows to split/merge given SVG files, find (parse)/copy images listed in it and slice specially prepared
 files to multiple icons.
 
 - INSTALLATION of 1D_SVG_Tools.py
