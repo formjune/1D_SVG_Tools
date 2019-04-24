@@ -1,7 +1,8 @@
 # COIL Icon Set description
 
 COIL icon set is a result of research about redesign of FreeCAD icons in minimalistic style.
-Main thread about COIL icon redesign https://forum.freecadweb.org/viewtopic.php?f=34&t=34687
+Main thread about COIL icon redesign
+https://forum.freecadweb.org/viewtopic.php?f=34&t=34687
 Icons are shared under CC-BY-SA 3.0 license,  license of code is GPL v2.
 
 Archive contains FC_PNG folder with PNG images of all icons in different color variations, and three basic Incscape SVG files with all icons in file
