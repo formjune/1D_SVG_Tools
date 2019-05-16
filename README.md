@@ -7,15 +7,12 @@ Icons are shared under CC-BY-SA 3.0 license,  license of code is GPL v2.<br>
 
 Archive contains FC_PNG folder with PNG images of all icons in different color variations, and three basic Incscape SVG files with all icons in file
 
-- 1D_FC_COIL_LA_BASE.svg (Light theme A - 8 colors fullcolor theme)
-- 1D_FC_COIL_LB_BLUE.svg (Light theme B - 5 colors blue theme)
-- 1D_FC_COIL_DB_BLUE.svg (Dark theme B - 5 colors blue theme)
+- FC_COIL_LAS_BASE
 
 and three folders with correspond sliced result with icon per file, ready to be used in FreeCAD IconThemes addon.
 
-- COIL_LA_v1.0
-- COIL_LB_v1.0
-- COIL_DB_v1.0
+- FC_COIL_LAS_SLICE
+- FC_COIL_LAS_RCC.rcc is Qt compiled file, that contains all FC_COIL_LAS icons , ready to use with latest version of IconThemes addon.
 
 Instructions about how to install and use sliced icon themes in FreeCAD can be found on addon's page:
 https://github.com/triplus/IconThemes
@@ -24,6 +21,7 @@ Base files can be edited in Inkscape https://inkscape.org/ , as it provides abil
 To slice modified base file into icon set we need to install 1D_ SVG_Tools addon in Blender 2.79 following further instructions, and use SVG icon slicer tool from it.
 
 To get proper names of icons, all "$" signs have to be removed from icon names, for example, with Double Commaner.
+
 
 # 1D_ SVG_Tools
 is an addon for Blender 2.79, a toolkit that provides tools for SVG files.

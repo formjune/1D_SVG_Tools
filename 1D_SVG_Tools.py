@@ -1,64 +1,41 @@
 """
+SUPPORTED BLENDER VERSION 2.79
+
 1D SVG TOOLS
 Plugin is devoted for working with svg files. Splitting, Slicing into icons, merging them
-
-;;; Copyright (C) 2019 Paul Kotelevets aka 1D_Inc, Andrey Menshikov 
-;;; forum: https://forum.freecadweb.org/viewtopic.php?f=34&t=34687
-;;;
-;;; License = GPL v2
-;;; This program is free software: you can redistribute it and/or modify
-;;; it under the terms of the GNU General Public License as published by
-;;; the Free Software Foundation, either version 3 of the License, or
-;;; (at your option) any later version.
-;;;
-;;; This program is distributed in the hope that it will be useful,
-;;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-;;; GNU General Public License for more details. 
-;;;
-;;; You should have received a copy of the GNU General Public License
-;;; along with this program.  If not, see http://www.gnu.org/licenses/
-
-
-1D_ SVG_Tools is an addon for Blender 2.79, a toolkit that provides tools for working with SVG files.
-SUPPORTED BLENDER VERSION = 2.79
 
 - INSTALLATION
 
 
 
-- TOOLS
+- METHODS
 
-SVG input split - splits svg file into pieces not exceeding selected size.
-Input - SVG file of directory with SVG files to proceed.
-Output - directory or empty for input directory.
+SVG input split - splitting svg file into pieces not exceeding selected size.
+Input - file or directory to apply to all files.
+Output - directory or leave empty. In case of leaving empty directory will be taken from input file.
 Max Size - size for output files
 
 SVG output merge - merge files into one. Output file will be named MERGE.SVG
-Input - directory with SVG files to proceed.
-Output - directory or empty for input directory.
+Input - directory whence to take files
+Output - directory or leave empty. In case of leaving empty output directory will be equal input.
 
 SVG parse images
-Scans SVG file for external image links and creates/rewrites Blneder interlnal text file called "svg parse images.txt" with found paths.
-Input - SVG file to scan.
-Crop Absolute Names - Convert absolute paths into "input directory + file name". Result for absolute names will be written into separated data block. Used for finding files near SVG (integrity check for archiving).
+Scan file for external links and write down result about their availability. Result will be put down as blender text "svg parse images".
+Input - file to scan.
+Crop Absolute Names - Convert absolute paths into "input directory + file name". Result for absolute names will be written into separated data block.
 
-SVG copy images - Copy all files from external links found by SVG parse images into one directory.
+SVG copy images - Copy all files from external links into one directory
 Input - svg file to scan
-Output - directory or empty for input directory. 
+Output - directory or leave empty. In case of leaving empty directory will be taken from input file.
 
-SVG icon slicer (+ Slice Transformed checkbox) - analysis tool. Creates temporal copy of SVG file, with all objects that have transformations moved to "TranMatrix" layer, as they cause problems with SVG icon slicing. Used for detecting objects with transformations and then fixing them in the original file.
+SVG icon slicer (Slice Transformed) - search for transformation in given svg. All objects with transformations applied will be placed into layer "TranMatrix"
 Input - file to analyze
-Output - directory or empty for input directory. In case of leaving empty name will be "input file + _out.svg"
+Output - directory or leave empty. In case of leaving empty name will be "input file + _out.svg"
 
-SVG icon slicer (- Slice Transformed checkbox) - slices single SVG file with icons into multiple SVG icon files.
-Icon filenames are taken from link of image objects from right side to the icon block.
-Grids, Metadata and License data are copied from original SVG.
-Objects with transformation matrices aren't supported properly, use Slice Transformed checkbox to detect them.
-Text blocks are ignored.
-
+SVG icon slicer - slice svg into files of given block size and moving into center of scene. Transformation matrices aren't supported thus transformed objects may be adjusted incorrectly. Text blocks are ignored.
+New file names is taken from link of image object on right to the icon block
 Input - file to slice
-Output - directory or empty for input directory. In case of leaving empty files will be written in new directory named "input file + out"
+Output - directory or leave empty. In case of leaving empty files will be written in new directory named "input file + out"
 """
 
 
@@ -81,14 +58,40 @@ import bpy
 bl_info = {
     "name": "1D SVG Tools",
     "author": "Andrey Menshikov",
-    "version": (1, 0, 0),
+    "version": (1, 0, 5),
     "blender": (2, 7, 9),
-    "location": "View3D > Tool Shelf > 1D > 1D SVG Tools",
-    "description": "SVG file processing tools",
+    "location": "View3D > Tool Shelf > 1D > AM1D",
+    "description": "SVG tools",
     "warning": "",
     "wiki_url": "",
     "tracker_url": "",
     "category": "Mesh"}
+
+
+index_theme = """[Icon Theme]
+Name=%s
+Comment=COIL icon theme pack
+Inherits=FreeCAD-default
+Directories=scalable
+
+[scalable]
+Size=64
+Type=Scalable
+MinSize=1
+MaxSize=256
+"""
+
+
+file_name_qrc_prefix = """<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/icons/%s">
+        <file>index.theme</file>
+    </qresource>
+    <qresource prefix="/icons/%s/scalable">
+"""
+
+file_name_qrc_suffix = """    </qresource>
+</RCC>
+"""
 
 
 class TagUnit(object):
@@ -1003,11 +1006,45 @@ class SVGIconSplitter(object):
         tree[0].children = [tag for tag in tree[0].children if tag.tag != "g"]  # remove all groups tag
         icon_tag = TagUnit("g", {"id": "icon", "inkscape:label": "icon", "inkscape:groupmode": "layer"})
         tree[0].children.append(icon_tag)
+
+        file_name = os.path.splitext(os.path.split(input_name)[1])[0]
+        prefix = ""
+
         for key, name in image_dict.items():
             if key not in tag_dict:
                 continue
+            name = os.path.dirname(name)
+            if not prefix or len(prefix) > len(name):
+                prefix = name
+
+        print(prefix)
+        if prefix:
+            os.makedirs(os.path.join(output_name, prefix), exist_ok=True)
+            index_file = open(os.path.join(output_name, prefix, "index.theme"), "w", encoding="utf-8")
+            qrc_file = open(os.path.join(output_name, prefix, file_name + ".qrc"), "w", encoding="utf-8")
+            prefix += "/"
+        else:
+            index_file = open(os.path.join(output_name, "index.theme"), "w", encoding="utf-8")
+            qrc_file = open(os.path.join(output_name, file_name + ".qrc"), "w", encoding="utf-8")
+
+        qrc_file.write(file_name_qrc_prefix % (file_name, file_name))
+        index_file.write(index_theme % file_name)
+        index_file.close()
+
+        for key, name in image_dict.items():
+            if key not in tag_dict:
+                continue
+
             icon_tag.children = tag_dict[key]
+            os.makedirs(os.path.join(output_name, os.path.dirname(name)), exist_ok=True)
             open(os.path.join(output_name, name), "w", encoding="utf-8").write(tree[0].string())
+
+            if prefix:
+                qrc_file.write("        <file>%s</file>\n" % name.replace(prefix, "", 1))
+            else:
+                qrc_file.write("        <file>%s</file>\n" % name)
+        qrc_file.write(file_name_qrc_suffix)
+        qrc_file.close()
 
     @classmethod
     def createSortedList(cls, size, current_tag, tag_dict, image_dict):
@@ -1017,7 +1054,7 @@ class SVGIconSplitter(object):
                 continue
 
             if tag.tag == "image":
-                path = tag.attrs["sodipodi:absref"].replace("\\", "/").split("/")[-1]
+                path = tag.attrs["xlink:href"].replace("\\", "/").replace("..", "upfolder")
                 file_name = os.path.splitext(path)[0]
                 div_x, mod_x = divmod(eval(tag.attrs["x"]) + 1, size)
                 div_y, mod_y = divmod(eval(tag.attrs["y"]) + 1, size)
@@ -1088,6 +1125,7 @@ class Settings(bpy.types.PropertyGroup):
 
     svg_input = bpy.props.StringProperty(subtype="FILE_PATH")
     svg_output = bpy.props.StringProperty(subtype="FILE_PATH")
+    svg_qrc = bpy.props.StringProperty(default="RASTER_LIB")
     svg_size = bpy.props.FloatProperty(name="svg_size", default=2, min=0.1, step=10, precision=1)
     svg_crop_abs = bpy.props.BoolProperty(name="", default=False)
     svg_label = bpy.props.BoolProperty(name="", default=False)
