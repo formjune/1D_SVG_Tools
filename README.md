@@ -20,8 +20,6 @@ https://github.com/triplus/IconThemes
 Base files can be edited in Inkscape https://inkscape.org/ , as it provides ability to select everything with the same color and recolor selection.
 To slice modified base file into icon set we need to install 1D_ SVG_Tools addon in Blender 2.79 following further instructions, and use SVG icon slicer tool from it.
 
-To get proper names of icons, all "$" signs have to be removed from icon names, for example, with Double Commaner.
-
 
 # 1D_ SVG_Tools
 is an addon for Blender 2.79, a toolkit that provides tools for SVG files.
