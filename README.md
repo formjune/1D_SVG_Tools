@@ -14,9 +14,6 @@ and three folders with correspond sliced result with icon per file, ready to be 
 - FC_COIL_LAS_SLICE
 - FC_COIL_LAS_RCC.rcc is Qt compiled file, that contains all FC_COIL_LAS icons , ready to use with latest version of IconThemes addon.
 
-Instructions about how to install and use sliced icon themes in FreeCAD can be found on addon's page:
-https://github.com/triplus/IconThemes
-
 Base files can be edited in Inkscape https://inkscape.org/ , as it provides ability to select everything with the same color and recolor selection.
 To slice modified base file into icon set we need to install 1D_ SVG_Tools addon in Blender 2.79 following further instructions, and use SVG icon slicer tool from it.
 
@@ -27,6 +24,7 @@ It allows to split/merge given SVG files, find (parse)/copy images listed in it 
 files to multiple icons.
 
 - INSTALLATION of 1D_SVG_Tools.py
+    - Follow instructions, provided with Icon Themes addon for placing RCC  file from the archive into a specific add-ons folder: https://github.com/triplus/IconThemes
     - Get Blender 2.79 from blender.org
     - Open program, open prefrences window (File – User Prefrences, or Ctrl+Alt+U shortcut).
     - In addons section press install addon from file button, specify 1D_SVG_Tools.py file,
