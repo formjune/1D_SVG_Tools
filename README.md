@@ -1,3 +1,7 @@
+# Icon Set Installation
+Follow instructions, provided with Icon Themes addon for placing RCC  file from the archive into a specific add-ons folder:
+https://github.com/triplus/IconThemes
+
 # COIL Icon Set description
 
 COIL icon set is a result of research about redesign of FreeCAD icons in minimalistic style.<br>
@@ -24,7 +28,6 @@ It allows to split/merge given SVG files, find (parse)/copy images listed in it 
 files to multiple icons.
 
 - INSTALLATION of 1D_SVG_Tools.py
-    - Follow instructions, provided with Icon Themes addon for placing RCC  file from the archive into a specific add-ons folder: https://github.com/triplus/IconThemes
     - Get Blender 2.79 from blender.org
     - Open program, open prefrences window (File – User Prefrences, or Ctrl+Alt+U shortcut).
     - In addons section press install addon from file button, specify 1D_SVG_Tools.py file,
